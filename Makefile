@@ -5,6 +5,10 @@ psql:
 bash:
 	docker-compose exec db bash
 
+.PHONY: tmux
+tmux:
+	tmux new-session -s apm make continuous_loader || tmux attach -t apm
+
 .PHONY: continuous_loader
 continuous_loader:
 	sudo ./x-action-log | ./xinput2insert.sh | tee | ./load.sh

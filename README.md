@@ -6,7 +6,7 @@
 docker-compose up -d
 cat sql/create_and_hypertable.sql | ./bin/psql
 
-make continuous_loader
-# another shell
+make tmux
+# detach, then
 make tail
 ```
