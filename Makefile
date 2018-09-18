@@ -7,8 +7,12 @@ bash:
 
 .PHONY: continuous_loader
 continuous_loader:
-	tail -f /var/log/x-userinput.log | ./xinput2insert.sh | tee | ./load.sh
+	sudo ./x-action-log | ./xinput2insert.sh | tee | ./load.sh
 
 .PHONY: tail
 tail:
-	echo 'select * FROM apm ORDER BY time DESC LIMIT 20' | ./bin/psql
+	cat sql/tail.sql | ./bin/psql
+
+.PHONY: per_minute
+per_minute:
+	cat sql/per_minute.sql | ./bin/psql
