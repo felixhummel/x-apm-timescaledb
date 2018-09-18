@@ -8,4 +8,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=password 
     volumes:
-      - ./mnt:/mnt
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
