@@ -7,7 +7,7 @@ bash:
 
 .PHONY: tmux
 tmux:
-	tmux new-session -s apm make continuous_loader || tmux attach -t apm
+	tmux new-session -A -s apm make continuous_loader
 
 .PHONY: continuous_loader
 continuous_loader:
