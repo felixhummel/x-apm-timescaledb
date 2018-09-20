@@ -11,7 +11,7 @@ tmux:
 
 .PHONY: continuous_loader
 continuous_loader:
-	sudo ./x-action-log | ./xinput2insert.sh | tee | ./load.sh
+	sudo ./x-action-log | ./xinput2insert.sh | ./load.sh
 
 .PHONY: tail
 tail:
