@@ -7,11 +7,11 @@ bash:
 
 .PHONY: tmux
 tmux:
-	tmux new-session -A -s apm make continuous_loader
+	tmux new-session -A -s apm make run
 
-.PHONY: continuous_loader
-continuous_loader:
-	sudo ./x-action-log | ./xinput2insert.sh | ./load.sh
+.PHONY: run
+run:
+	./bin/run
 
 .PHONY: tail
 tail:

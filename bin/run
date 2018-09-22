@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+# try to up DB
+docker-compose up -d db
+
+# wait for DB
+TIMEOUT=10 ./bin/_wait.sh ./bin/psql -c 'select 1 as ok'
+
+# run the pipeline
+./x-action-log | ./xinput2insert.sh | ./load.sh

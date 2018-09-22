@@ -5,10 +5,6 @@
 # "k" for keyboard button press
 
 hash xinput
-if [[ $UID != 0 ]]; then
-  echo "You must be root" >&2
-  exit 1
-fi
 
 IFS='' xinput test-xi2 --root | grep --line-buffered ^EVENT | while read line; do
   # line examples:
