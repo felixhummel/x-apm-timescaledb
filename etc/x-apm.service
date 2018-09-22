@@ -1,0 +1,11 @@
+[Unit]
+Description=log actions per minute (APM) for your X session
+PartOf=graphical-session.target
+
+[Service]
+WorkingDirectory=/home/felix/hacks/x-apm-timescaledb
+ExecStart=/home/felix/hacks/x-apm-timescaledb/bin/run
+#Restart=always
+
+[Install]
+WantedBy=xsession.target

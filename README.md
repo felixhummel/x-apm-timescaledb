@@ -16,6 +16,15 @@ make tmux
 make tail
 ```
 
+
+# Systemd
+https://superuser.com/a/1128905
+```
+mkdir -p ~/.config/systemd/user/
+cp etc/x-apm.service ~/.config/systemd/user/x-apm.service
+```
+
+
 # Notes
 - TimescaleDB setup
   - https://docs.timescale.com/v1.0/getting-started/setup
