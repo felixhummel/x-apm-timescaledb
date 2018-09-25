@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
+echo loaded > /tmp/import-x
+systemctl --user import-environment PATH DISPLAY
+systemctl --user start user-graphical-login.target
