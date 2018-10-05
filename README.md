@@ -11,6 +11,8 @@ docker-compose up -d
 - TimescaleDB setup
   - https://docs.timescale.com/v1.0/getting-started/setup
   - https://docs.timescale.com/v1.0/getting-started/configuring (ignored for now)
+- Grafana
+  - http://docs.grafana.org/features/datasources/postgres/#time-series-queries
 
 
 # Development

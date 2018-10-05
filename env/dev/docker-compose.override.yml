@@ -3,3 +3,8 @@ version: '3.5'
 services:
   xinput:
     build: .
+  grafana:
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - 127.0.0.1:3000:3000

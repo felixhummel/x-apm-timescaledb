@@ -25,6 +25,8 @@ services:
       - data:/var/lib/postgresql/data
       - ./sql/create_and_hypertable.sql:/docker-entrypoint-initdb.d/z_01_create_and_hypertable.sql
     restart: always
+  grafana:
+    image: grafana/grafana:5.2.4
 
 volumes:
   data:
