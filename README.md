@@ -1,19 +1,8 @@
 Inspired by StarCraft 2 Action per Minute (APM) counters [1].
 
-
 # Run
 ```
-cat <<EOF > .env
-PGPASSWORD=password
-PGPORT=25432
-EOF
-
 docker-compose up -d
-./bin/psql < sql/create_and_hypertable.sql
-
-make tmux
-# detach, then
-make tail
 ```
 
 # Notes

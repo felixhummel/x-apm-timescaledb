@@ -1,5 +1,0 @@
-#!/bin/bash
-set -euo pipefail
-
-source .env
-PGPASSWORD=password exec psql -h 127.0.0.1 -p $PGPORT postgres postgres "$@"

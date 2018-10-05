@@ -5,18 +5,26 @@ services:
     build: .
     user: 1337:1337
     environment:
-      - DISPLAY=$DISPLAY
+      - DISPLAY=${DISPLAY-:0.0}
+      - PGHOST=db
+      - PGPORT=5432
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=password
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     stop_signal: SIGINT
   db:
-    image: timescale/timescaledb
+    image: timescale/timescaledb:latest-pg10
     ports:
       - ${PGPORT}:5432
     environment:
       - POSTGRES_PASSWORD=${PGPASSWORD}
     volumes:
       - data:/var/lib/postgresql/data
+      - ./sql/create_and_hypertable.sql:/docker-entrypoint-initdb.d/z_01_create_and_hypertable.sql
 
 volumes:
   data:
+    labels:
+      - de.felixhummel.project=x-apm-timescaledb

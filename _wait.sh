@@ -1,8 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-# wait TIMEOUT seconds (in addition to the runtime of CMD)
+# wait TIMEOUT seconds (0 means forever)
 TIMEOUT=${TIMEOUT:-30}
+SLEEP=${SLEEP:-1}
 
 CMD="$@"
 
@@ -16,11 +17,11 @@ trap control_c SIGINT
 
 t=0
 echo "waiting for service using command \"$CMD\""
-while ! $CMD>/dev/null 2>&1; do
-  sleep 1
+while ! $CMD >/dev/null 2>&1; do
+  sleep $SLEEP
   echo -n '.'
   let ++t
-  if [[ $t -ge $TIMEOUT ]]; then
+  if [[ $t -ge $TIMEOUT && $TIMEOUT -gt 0 ]]; then
     echo
     echo "timeout (${TIMEOUT}s) reached. exiting."
     exit 1
