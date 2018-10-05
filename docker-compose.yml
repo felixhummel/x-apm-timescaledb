@@ -1,6 +1,14 @@
 version: '3.5'
 
 services:
+  xinput:
+    build: .
+    user: 1337:1337
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    stop_signal: SIGINT
   db:
     image: timescale/timescaledb
     ports:
