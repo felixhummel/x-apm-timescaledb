@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   xinput:
-    build: .
+    image: felix/x-apm-timescaledb
     user: 1337:1337
     environment:
       - DISPLAY=${DISPLAY-:0.0}
@@ -14,6 +14,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     stop_signal: SIGINT
+    restart: always
   db:
     image: timescale/timescaledb:latest-pg10
     ports:
@@ -23,6 +24,7 @@ services:
     volumes:
       - data:/var/lib/postgresql/data
       - ./sql/create_and_hypertable.sql:/docker-entrypoint-initdb.d/z_01_create_and_hypertable.sql
+    restart: always
 
 volumes:
   data:
