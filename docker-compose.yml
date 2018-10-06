@@ -27,6 +27,7 @@ services:
     restart: always
   grafana:
     image: grafana/grafana:5.2.4
+    restart: always
 
 volumes:
   data:
