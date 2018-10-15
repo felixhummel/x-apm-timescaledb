@@ -1,14 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_TIMESCALEDB",
-      "label": "TimescaleDB",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "postgres",
-      "pluginName": "PostgreSQL"
-    }
-  ],
   "__requires": [
     {
       "type": "grafana",
@@ -50,14 +40,14 @@
   "panels": [
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "TimescaleDB",
       "fill": 1,
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 10,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -71,7 +61,7 @@
         "total": false,
         "values": false
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
@@ -81,20 +71,26 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
           "alias": "",
           "format": "time_series",
-          "rawSql": "SELECT\n    $__timeGroup(\"t\", '1m', 0),\n    -- time_bucket('1 minute', time) as time,\n    sum(val) as value,\n    'apm' as metric\n  FROM (\n    select time as t, 1 as val from apm\n  ) x\n  WHERE $__timeFilter(\"t\")\n  GROUP BY time\n  ORDER BY time;\n  ",
+          "rawSql": "SELECT\n    $__timeGroup(\"t\", '1m', 0),\n    -- time_bucket('1 minute', time) as time,\n    sum(val) as value,\n    'keyboard' as metric\n  FROM (\n    select time as t, 1 as val, kind from apm\n  ) x\n  WHERE $__timeFilter(\"t\") and kind = 'k'\n  GROUP BY time\n  ORDER BY time;",
           "refId": "A"
+        },
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n    $__timeGroup(\"t\", '1m', 0),\n    -- time_bucket('1 minute', time) as time,\n    sum(val) as value,\n    'mouse' as metric\n  FROM (\n    select time as t, 1 as val, kind from apm\n  ) x\n  WHERE $__timeFilter(\"t\") and kind = 'm'\n  GROUP BY time\n  ORDER BY time;",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Actions per Minute",
+      "title": "",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -132,6 +128,7 @@
       }
     }
   ],
+  "refresh": "10s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -139,7 +136,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-2h",
     "to": "now"
   },
   "timepicker": {
@@ -169,6 +166,6 @@
   },
   "timezone": "",
   "title": "APM",
-  "uid": "-FHIA51mz",
-  "version": 1
+  "uid": "0UO8wS1mz",
+  "version": 2
 }
