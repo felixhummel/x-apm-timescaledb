@@ -26,7 +26,7 @@ services:
       - ./sql/create_and_hypertable.sql:/docker-entrypoint-initdb.d/z_01_create_and_hypertable.sql
     restart: always
   grafana:
-    image: grafana/grafana:5.2.4
+    image: grafana/grafana:5.3.1
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     ports:
