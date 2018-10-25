@@ -17,10 +17,8 @@ services:
     restart: always
   db:
     image: timescale/timescaledb:latest-pg10
-    ports:
-      - ${PGPORT}:5432
     environment:
-      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - POSTGRES_PASSWORD=password
     volumes:
       - data:/var/lib/postgresql/data
       - ./sql/create_and_hypertable.sql:/docker-entrypoint-initdb.d/z_01_create_and_hypertable.sql
