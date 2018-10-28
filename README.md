@@ -1,5 +1,6 @@
 Inspired by StarCraft 2 Action per Minute (APM) counters [^1].
 
+![Screenshot](screenshot.png)
 
 # Run
 ```
