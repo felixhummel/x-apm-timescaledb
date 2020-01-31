@@ -25,7 +25,7 @@ services:
       - ./sql/annotations.sql:/docker-entrypoint-initdb.d/z_02_annotations.sql
     restart: always
   grafana:
-    image: grafana/grafana:5.3.2
+    image: grafana/grafana:6.6.0
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       # http://docs.grafana.org/auth/overview/#anonymous-authentication
