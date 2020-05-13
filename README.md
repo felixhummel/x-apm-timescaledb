@@ -5,7 +5,7 @@ Inspired by StarCraft 2 Action per Minute (APM) counters [^1].
 # Run
 ```
 docker-compose up -d
-python -mwebbrowser 'http://localhost:3000/d/apm/apm?refresh=10s&orgId=1&var-resolution=1m'
+python -mwebbrowser 'http://localhost:31337/d/apm/apm?refresh=10s&orgId=1&var-resolution=1m'
 ```
 
 
