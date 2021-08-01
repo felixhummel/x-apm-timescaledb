@@ -9,21 +9,6 @@ python -mwebbrowser 'http://localhost:31337/d/apm/apm?refresh=10s&orgId=1&var-re
 ```
 
 
-# Backup / Restore
-```
-sudo mkdir /var/backups/x-apm-timescaledb
-sudo chown $(id -u):$(id -g) /var/backups/x-apm-timescaledb
-./bin/backup.sh
-```
-
-Though shalt have downtime
-```
-docker-compose stop
-./bin/restore.sh
-docker-compose up -d
-```
-
-
 # Notes
 - TimescaleDB setup
   - https://docs.timescale.com/v1.0/getting-started/setup
