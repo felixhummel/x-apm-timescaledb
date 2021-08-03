@@ -20,3 +20,7 @@ tail:
 .PHONY: per_minute
 per_minute:
 	cat sql/per_minute.sql | ./bin/psql
+
+.PHONY: nginx_reload
+nginx_reload:
+	docker-compose exec nginx sh -c 'nginx -t && nginx -s reload'

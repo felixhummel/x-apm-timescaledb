@@ -1,6 +1,25 @@
 version: '3.5'
 
+networks:
+  ingress:
+    external: true
+
 services:
+
+  nginx:
+    image: nginx:1.21
+    networks:
+      default:
+      ingress:
+        aliases:
+          - grafana.apm.f
+    volumes:
+      - ./etc_nginx/:/etc/nginx/:ro
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 5s
+      timeout: 1s
+
   xinput:
     image: felix/x-apm-timescaledb
     user: 1337:1337
@@ -31,8 +50,6 @@ services:
       # http://docs.grafana.org/auth/overview/#anonymous-authentication
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_BASIC_ENABLED=false
-    ports:
-      - 127.0.0.1:31337:3000
     restart: always
     volumes:
       - grafana_data:/var/lib/grafana
