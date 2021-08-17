@@ -19,7 +19,7 @@ services:
       test: ["CMD", "nginx", "-t"]
       interval: 5s
       timeout: 1s
-
+    restart: unless-stopped
   xinput:
     image: felix/x-apm-timescaledb
     user: 1337:1337
@@ -33,7 +33,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     stop_signal: SIGINT
-    restart: always
+    restart: unless-stopped
   db:
     image: timescale/timescaledb:latest-pg10
     environment:
@@ -42,7 +42,7 @@ services:
       - data:/var/lib/postgresql/data
       - ./sql/create_and_hypertable.sql:/docker-entrypoint-initdb.d/z_01_create_and_hypertable.sql
       - ./sql/annotations.sql:/docker-entrypoint-initdb.d/z_02_annotations.sql
-    restart: always
+    restart: unless-stopped
   grafana:
     image: grafana/grafana:7.3.4
     environment:
@@ -50,11 +50,11 @@ services:
       # http://docs.grafana.org/auth/overview/#anonymous-authentication
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_BASIC_ENABLED=false
-    restart: always
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+    restart: unless-stopped
 
 volumes:
   data:
