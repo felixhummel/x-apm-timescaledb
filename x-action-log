@@ -6,10 +6,9 @@
 
 hash xinput
 
-IFS='' xinput test-xi2 --root | grep --line-buffered ^EVENT | while read line; do
+IFS='' xinput test-xi2 --root | grep -E --line-buffered '^EVENT type (2|4)' | while read line; do
   # line examples:
   # EVENT type 4 (ButtonPress)
-  # EVENT type 15 (RawButtonPress)
   # EVENT type 2 (KeyPress)
   dt_ms=$(date +%FT%H:%M:%S.%N | cut -b1-23)
   if echo $line | grep -q '(ButtonPress)'; then
