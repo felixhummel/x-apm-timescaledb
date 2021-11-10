@@ -12,7 +12,7 @@ services:
       default:
       ingress:
         aliases:
-          - grafana.apm.x.internal
+          - grafana.apm.x
     volumes:
       - ./etc_nginx/:/etc/nginx/:ro
     healthcheck:
