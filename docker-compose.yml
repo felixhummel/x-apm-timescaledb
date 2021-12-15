@@ -6,20 +6,6 @@ networks:
 
 services:
 
-  nginx:
-    image: nginx:1.21
-    networks:
-      default:
-      ingress:
-        aliases:
-          - grafana.apm.x
-    volumes:
-      - ./etc_nginx/:/etc/nginx/:ro
-    healthcheck:
-      test: ["CMD", "nginx", "-t"]
-      interval: 5s
-      timeout: 1s
-    restart: unless-stopped
   xinput:
     image: felix/x-apm-timescaledb
     user: 1337:1337
@@ -44,6 +30,13 @@ services:
       - ./sql/annotations.sql:/docker-entrypoint-initdb.d/z_02_annotations.sql
     restart: unless-stopped
   grafana:
+    networks:
+      default:
+      ingress:
+        aliases:
+          - grafana.apm.x
+    labels:
+      de.hukudo.ingress.port: 3000
     image: grafana/grafana:8.1.1
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
