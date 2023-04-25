@@ -8,4 +8,4 @@ _wait.sh psql -h $PGHOST -p $PGPORT $PGDATABASE $PGUSER -c 'select 1 as ok'
 TIMEOUT=0 SLEEP=5 _wait.sh xinput
 
 # run the pipeline
-x-action-log | xinput2insert.sh | psql
+x-action-log | xinput2insert.sh | psql --quiet
