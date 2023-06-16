@@ -44,6 +44,7 @@ services:
       - GF_AUTH_BASIC_ENABLED=false
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards:/var/lib/grafana/dashboards
     restart: unless-stopped

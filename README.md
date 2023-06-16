@@ -2,11 +2,11 @@ Inspired by StarCraft 2 Action per Minute (APM) counters [^1].
 
 ![Screenshot](screenshot.png)
 
+
 # Run
 ```
-docker network create ingress
 docker-compose up -d
-python -mwebbrowser 'http://localhost:31337/d/apm/apm?refresh=10s&orgId=1&var-resolution=1m'
+python -mwebbrowser https://grafana.apm.x/
 ```
 
 
@@ -21,6 +21,15 @@ python -mwebbrowser 'http://localhost:31337/d/apm/apm?refresh=10s&orgId=1&var-re
 # Development
 ```
 ln -s env/dev/docker-compose.override.yml
+```
+
+
+# Develop locally
+```
+export PATH=$PWD:$PATH
+apm-keyboard
+apm-mouse
+x-action-log
 ```
 
 

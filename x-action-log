@@ -6,14 +6,9 @@
 
 hash xinput
 
-IFS='' xinput test-xi2 --root | grep -E --line-buffered '^EVENT type (2|4)' | while read line; do
-  # line examples:
-  # EVENT type 4 (ButtonPress)
-  # EVENT type 2 (KeyPress)
-  dt_ms=$(date +%FT%H:%M:%S.%N | cut -b1-23)
-  if echo $line | grep -q '(ButtonPress)'; then
-    echo $dt_ms m
-  elif echo $line | grep -q '(KeyPress)'; then
-    echo $dt_ms k
-  fi
-done
+# https://stackoverflow.com/a/28333938/241240
+trap "kill 0" SIGINT
+
+apm-mouse &
+apm-keyboard &
+wait

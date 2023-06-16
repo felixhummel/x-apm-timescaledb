@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
+xinput test-xi2 --root "Virtual core keyboard" \
+  | grep -E --line-buffered '^EVENT type 13' \
+  | _out k

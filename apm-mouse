@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
+xinput test-xi2 --root "Virtual core pointer" \
+  | grep -E --line-buffered '^EVENT type 15' \
+  | _out m
