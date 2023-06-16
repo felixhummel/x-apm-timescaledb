@@ -18,7 +18,6 @@ services:
       - PGPASSWORD=password
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - $HOME/.Xauthority:/.Xauthority:ro
     stop_signal: SIGINT
     restart: unless-stopped
   db:
