@@ -4,15 +4,15 @@
 # https://stackoverflow.com/a/49836011/241240
 psql <<'EOF'
 BEGIN;
-CREATE TEMP TABLE tmp_bash
+CREATE TEMP TABLE tmp
 (LIKE bash INCLUDING DEFAULTS)
 ON COMMIT DROP;
 
-\copy bash from '/tmp/x.csv' CSV
+\copy tmp from '/tmp/x.csv' CSV
 
 INSERT INTO bash
 SELECT *
-FROM tmp_bash
+FROM tmp
 ON CONFLICT DO NOTHING;
 COMMIT;
 EOF
