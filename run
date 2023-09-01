@@ -1,11 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 
-# wait for DB
-_wait.sh psql -c 'select 1 as ok'
+here=$(cd "$(dirname "$0")" && pwd)
 
-# wait for xserver (unlimited)
-TIMEOUT=0 SLEEP=5 _wait.sh xinput
+# add "here" to PATH
+if ! echo $PATH | grep $here >/dev/null; then
+  export PATH=$here:$PATH
+fi
 
 # run the pipeline
 x-action-log | xinput2insert.sh | psql --quiet
