@@ -38,7 +38,8 @@ services:
       ingress.port: 3000
     image: grafana/grafana:8.1.1
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      # something different than "admin", so grafana does not bug me to change it
+      - GF_SECURITY_ADMIN_PASSWORD=secret
       # http://docs.grafana.org/auth/overview/#anonymous-authentication
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_BASIC_ENABLED=false

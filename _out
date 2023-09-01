@@ -2,6 +2,6 @@
 set -euo pipefail
 
 while read line; do
-  dt_ms=$(date +%FT%H:%M:%S.%N | cut -b1-23)
-  echo $dt_ms $1
+  dt_ns=$(date +"%Y-%m-%dT%H:%M:%S.%N%z")
+  echo $dt_ns $1
 done

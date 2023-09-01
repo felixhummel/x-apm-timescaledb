@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # wait for DB
-_wait.sh psql -h $PGHOST -p $PGPORT $PGDATABASE $PGUSER -c 'select 1 as ok'
+_wait.sh psql -c 'select 1 as ok'
 
 # wait for xserver (unlimited)
 TIMEOUT=0 SLEEP=5 _wait.sh xinput

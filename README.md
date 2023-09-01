@@ -21,6 +21,9 @@ python -mwebbrowser https://grafana.apm.x/
 # Development
 ```
 ln -s env/dev/docker-compose.override.yml
+./env/dev/generate_env_file.sh > .env
+set -o allexport; source .env; set +o allexport
+psql
 ```
 
 
