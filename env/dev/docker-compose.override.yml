@@ -1,9 +1,6 @@
 version: '3.5'
 
 services:
-  xinput:
-    build: .
-    profiles: ["xinput"]
   db:
     ports:
       - "127.0.0.1:55432:5432"

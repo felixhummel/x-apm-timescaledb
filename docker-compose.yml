@@ -6,20 +6,6 @@ networks:
 
 services:
 
-  xinput:
-    image: felix/x-apm-timescaledb
-    user: 1337:1337
-    environment:
-      - DISPLAY=${DISPLAY-:0.0}
-      - PGHOST=db
-      - PGPORT=5432
-      - PGDATABASE=postgres
-      - PGUSER=postgres
-      - PGPASSWORD=password
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
-    stop_signal: SIGINT
-    restart: unless-stopped
   db:
     image: timescale/timescaledb:latest-pg10
     environment:

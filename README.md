@@ -5,6 +5,7 @@ Inspired by StarCraft 2 Action per Minute (APM) counters [^1].
 
 # Run
 ```
+sudo apt-get install -y xinput
 docker-compose up -d
 python -mwebbrowser https://grafana.apm.x/
 ```
@@ -20,19 +21,18 @@ python -mwebbrowser https://grafana.apm.x/
 
 # Development
 ```
-ln -s env/dev/docker-compose.override.yml
 ./env/dev/generate_env_file.sh > .env
 set -o allexport; source .env; set +o allexport
 psql
 ```
 
 
-# Develop locally
+
+# Backup Grafana Dashboards
 ```
-export PATH=$PWD:$PATH
-apm-keyboard
-apm-mouse
-x-action-log
+pip install -U hukudo
+./env/dev/generate_grafana_env_file.sh > .grafana.env
+hukudo -linfo grafana -c .grafana.env dashboard export grafana/dashboards/
 ```
 
 
