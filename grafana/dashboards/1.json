@@ -34,7 +34,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1693603904231,
+  "iteration": 1693605609465,
   "links": [],
   "panels": [
     {
@@ -354,12 +354,12 @@
         "name": "resolution",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "30s",
             "value": "30s"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1m",
             "value": "1m"
           },
@@ -408,8 +408,8 @@
     ]
   },
   "time": {
-    "from": "2021-08-03T22:00:00.000Z",
-    "to": "2021-08-04T21:59:59.000Z"
+    "from": "now-9h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -438,5 +438,5 @@
   "timezone": "",
   "title": "APM",
   "uid": "apm",
-  "version": 5
+  "version": 6
 }
