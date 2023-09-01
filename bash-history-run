@@ -1,4 +1,10 @@
 #!/bin/bash
+
+here=$(cd "$(dirname "$0")" && pwd)
+
+cd $here
+set -o allexport; source .env; set +o allexport
+
 ./bash-history-format | rg '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}+' > /tmp/x.csv
 
 # https://stackoverflow.com/a/49836011/241240

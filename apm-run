@@ -8,5 +8,7 @@ if ! echo $PATH | grep $here >/dev/null; then
   export PATH=$here:$PATH
 fi
 
+cd $here
+set -o allexport; source .env; set +o allexport
 # run the pipeline
 x-action-log | xinput2insert.sh | psql --quiet
