@@ -1,0 +1,18 @@
+#!/bin/bash
+./bash-history-format | rg '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}+' > /tmp/x.csv
+
+# https://stackoverflow.com/a/49836011/241240
+psql <<'EOF'
+BEGIN;
+CREATE TEMP TABLE tmp_bash
+(LIKE bash INCLUDING DEFAULTS)
+ON COMMIT DROP;
+
+\copy bash from '/tmp/x.csv' CSV
+
+INSERT INTO bash
+SELECT *
+FROM tmp_bash
+ON CONFLICT DO NOTHING;
+COMMIT;
+EOF

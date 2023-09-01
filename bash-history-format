@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+export HISTTIMEFORMAT="%FT%H:%M:%S%z "
+set -o history
+# read
+history -n ~/.bash_history
+# print
+history | awk '{ print $2","$1 }'
+# clear, so there is nothing to append when exiting
+history -c

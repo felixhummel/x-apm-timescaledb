@@ -26,7 +26,7 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - data:/var/lib/postgresql/data
-      - ./sql/create_and_hypertable.sql:/docker-entrypoint-initdb.d/z_01_create_and_hypertable.sql
+      - ./sql/create_apm.sql:/docker-entrypoint-initdb.d/z_01_create_apm.sql
       - ./sql/annotations.sql:/docker-entrypoint-initdb.d/z_02_annotations.sql
     restart: unless-stopped
   grafana:
