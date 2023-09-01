@@ -5,8 +5,6 @@ set -euo pipefail
 TIMEOUT=${TIMEOUT:-30}
 SLEEP=${SLEEP:-1}
 
-CMD="$@"
-
 control_c() {
     echo  # new line for ^C character that is printed
     echo "Exiting."
@@ -16,8 +14,8 @@ trap control_c SIGINT
 
 
 t=0
-echo "waiting for service using command \"$CMD\""
-while ! $CMD >/dev/null 2>&1; do
+echo "waiting for service using command \"$@\""
+while ! "$@" >/dev/null 2>&1; do
   sleep $SLEEP
   echo -n '.'
   let ++t
