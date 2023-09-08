@@ -10,5 +10,10 @@ fi
 
 cd $here
 set -o allexport; source .env; set +o allexport
+
+_wait.sh psql -c 'select 1 as ok'
+# wait for xserver (unlimited)
+TIMEOUT=0 SLEEP=5 _wait.sh xinput
+
 # run the pipeline
 x-action-log | xinput2insert.sh | psql --quiet
