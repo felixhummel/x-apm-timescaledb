@@ -23,7 +23,7 @@ services:
       ingress.host: grafana.apm.x
       ingress.port: 3000
     # https://hub.docker.com/r/grafana/grafana/tags
-    image: grafana/grafana:9.5.15
+    image: grafana/grafana:10.3.1
     environment:
       # something different than "admin", so grafana does not bug me to change it
       - GF_SECURITY_ADMIN_PASSWORD=secret
